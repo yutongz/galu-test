@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ab37b475-abe9-4918-b009-8b9f887a93eb" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/WORKSPACE" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/api/v1/BUILD.bazel" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/api/v1/group_manager.proto" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
