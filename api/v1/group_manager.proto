@@ -1,0 +1,15 @@
+// The definition of a group management service.
+
+syntax = "proto3";
+
+package galu;
+
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
+import "google/protobuf/empty.proto";
+
+message Group {
+  string id = 1;
+  google.protobuf.Timestamp create_time = 2;
+}
