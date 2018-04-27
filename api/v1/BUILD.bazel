@@ -7,16 +7,37 @@ load("@io_bazel_rules_go//go:def.bzl", "go_library")
 load("@io_bazel_rules_go//proto:def.bzl", "go_proto_library")
 
 genrule(
-    name = "api_descriptor",
+    name = "api_descriptor_v1",
     srcs = [
         "@com_github_googleapis_googleapis//:google/api/annotations.proto",
         "@com_google_protobuf//:well_known_protos",
         "group_manager.proto",
     ],
-    outs = ["api_descriptor.proto"],
+    outs = ["api_descriptor.proto.v1"],
     cmd = """$(location //external:protoc) $(location :group_manager.proto) \
         -I$$(dirname $(location @com_github_googleapis_googleapis//:google/api/annotations.proto)) \
         -I$$(dirname $(location @com_google_protobuf//:well_known_protos)) \
+        --include_imports --descriptor_set_out=$@""",
+    tools = ["//external:protoc"],
+    # This section is not working right now, add manual tag to make it skipped when bazel build //...
+    tags = ["manual"]
+)
+
+genrule(
+    name = "api_descriptor_v2",
+    srcs = [
+        "@com_github_googleapis_googleapis//:google/api/annotations.proto",
+        "@com_google_protobuf//:src/google/protobuf/duration.proto",
+        "@com_google_protobuf//:src/google/protobuf/timestamp.proto",
+        "@com_google_protobuf//:src/google/protobuf/empty.proto",
+        "group_manager.proto",
+    ],
+    outs = ["api_descriptor.proto.v2"],
+    cmd = """$(location //external:protoc) $(location :group_manager.proto) \
+        -I$$(dirname $(location @com_github_googleapis_googleapis//:google/api/annotations.proto)) \
+        -I$$(dirname $(location @com_google_protobuf//:src/google/protobuf/duration.proto)) \
+        -I$$(dirname $(location @com_google_protobuf//:src/google/protobuf/timestamp.proto)) \
+        -I$$(dirname $(location @com_google_protobuf//:src/google/protobuf/empty.proto)) \
         --include_imports --descriptor_set_out=$@""",
     tools = ["//external:protoc"],
     # This section is not working right now, add manual tag to make it skipped when bazel build //...
